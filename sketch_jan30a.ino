@@ -34,6 +34,19 @@ void loop() {
         Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? "Não" : "Sim");
         delay(10);
       }
+      //Verificando a rede aberta com melhor sinal
+      Serial.println("Verificando a rede aberta com melhor sinal");
+      for (int i = 0; i < QuantidadeDeRedes; ++i) {
+        if (WiFi.encryptionType(i) == WIFI_AUTH_OPEN) {
+          Serial.println("Rede aberta com melhor sinal:");
+          Serial.print("Nome da Rede: ");
+          Serial.print(WiFi.SSID(i));
+          Serial.print(" - Sinal: ");
+          Serial.print(WiFi.RSSI(i));
+          Serial.println();
+          break; //Finaliza o loop
+        } 
+      }
       //Tempo para a próxima verificação
       delay(5000);
 
